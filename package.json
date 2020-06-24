@@ -1,0 +1,9 @@
+{
+  "name": "apollo-server-starter",
+  "version": "1.0.0",
+  "description": "Apollo Server Boilerplate",
+  "main": "index.js",
+  "repository": "https://github.com/mrcos-g/apollo-server-starter",
+  "author": "mrcos-g",
+  "license": "MIT"
+}

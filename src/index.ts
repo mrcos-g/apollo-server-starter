@@ -1,1 +1,1 @@
-const cat: string = 'sadie';
+const cat = 'sadie';

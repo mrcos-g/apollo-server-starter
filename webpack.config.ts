@@ -7,17 +7,16 @@ import nodeExternals from 'webpack-node-externals';
 const config: webpack.Configuration = {
   devtool: 'inline-source-map',
   entry: sync(resolve('src/migrations/*.ts')).reduce(
-    (entries: any, filename: any) => {
+    (entries, filename) => {
       const migrationName = 'migrations/' + basename(filename, '.ts');
       return Object.assign({}, entries, {
         [migrationName]: filename,
       });
     },
-    { bundle: './src/index.ts', console: './src/console.ts' }
+    { bundle: './src/index.ts', console: './src/console.ts' },
   ),
   externals: [nodeExternals()],
-  mode:
-    (process.env.NODE_ENV as webpack.Configuration['mode']) || 'development',
+  mode: (process.env.NODE_ENV as webpack.Configuration['mode']) || 'development',
   module: {
     rules: [
       {

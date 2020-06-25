@@ -13,7 +13,7 @@ const config: webpack.Configuration = {
         [migrationName]: filename,
       });
     },
-    { bundle: './src/index.ts', console: './src/console.ts' },
+    { bundle: './src/index.ts' },
   ),
   externals: [nodeExternals()],
   mode: (process.env.NODE_ENV as webpack.Configuration['mode']) || 'development',

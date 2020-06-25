@@ -11,6 +11,8 @@
     "outDir": "build",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
-  }
+    "target": "es2018"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

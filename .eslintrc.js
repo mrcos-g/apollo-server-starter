@@ -15,5 +15,6 @@ module.exports = {
   ],
   env: {
     node: true,
+    es2017: true,
   },
 };

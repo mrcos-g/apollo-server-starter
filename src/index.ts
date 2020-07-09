@@ -1,17 +1,30 @@
-import { ApolloServer, gql } from 'apollo-server';
+import 'reflect-metadata';
+import { ApolloServer } from 'apollo-server';
 
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
+// TypeGraphQL Defs that will be moved
+import { ObjectType, Field, Resolver, Query, buildSchema } from 'type-graphql';
+
+@ObjectType()
+class Book {
+  @Field()
+  title!: string;
+
+  @Field()
+  author!: string;
+}
+
+@Resolver()
+class BooksResolver {
+  private bookCollection: Book[] = bookList;
+
+  @Query(() => [Book])
+  async books() {
+    return await this.bookCollection;
   }
+}
+// End TypegraphQL Portion
 
-  type Query {
-    books: [Book]
-  }
-`;
-
-const books = [
+const bookList = [
   {
     title: 'Harry Potter and the Chamber of Secrets',
     author: 'J.K. Rowling',
@@ -22,15 +35,12 @@ const books = [
   },
 ];
 
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-};
-
 const startServer = async () => {
   const port = (process.env.PORT || 4000) as number;
-  const server = new ApolloServer({ typeDefs, resolvers });
+
+  const schema = await buildSchema({ resolvers: [BooksResolver] });
+
+  const server = new ApolloServer({ schema, playground: true });
   server.listen(port).then(({ url }) => {
     console.log(`Server running at ${url}`);
   });

@@ -15,9 +15,11 @@
   "dependencies": {
     "apollo-server": "^2.15.0",
     "graphql": "^15.1.0",
+    "pg": "^8.3.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^8.10.2",
-    "type-graphql": "^1.0.0-rc.2"
+    "type-graphql": "^1.0.0-rc.2",
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@types/webpack": "^4.41.17",

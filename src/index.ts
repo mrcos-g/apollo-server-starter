@@ -19,7 +19,7 @@ class BooksResolver {
 
   @Query(() => [Book])
   async books() {
-    return await this.bookCollection;
+    return this.bookCollection;
   }
 }
 // End TypegraphQL Portion

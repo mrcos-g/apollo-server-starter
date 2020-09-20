@@ -1,44 +1,27 @@
+if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('dotenv').config();
+}
+
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server';
+import { buildSchema } from 'type-graphql';
+import { createConnection, getConnectionOptions } from 'typeorm';
 
-// TypeGraphQL Defs that will be moved
-import { ObjectType, Field, Resolver, Query, buildSchema } from 'type-graphql';
-
-@ObjectType()
-class Book {
-  @Field()
-  title!: string;
-
-  @Field()
-  author!: string;
-}
-
-@Resolver()
-class BooksResolver {
-  private bookCollection: Book[] = bookList;
-
-  @Query(() => [Book])
-  async books() {
-    return await this.bookCollection;
-  }
-}
-// End TypegraphQL Portion
-
-const bookList = [
-  {
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-];
+import entities from './entities';
+import { resolvers } from './schema';
 
 const startServer = async () => {
   const port = (process.env.PORT || 4000) as number;
 
-  const schema = await buildSchema({ resolvers: [BooksResolver] });
+  const connectionOptions = await getConnectionOptions('build');
+  const schema = await buildSchema({ resolvers });
+
+  await createConnection({
+    ...connectionOptions,
+    entities,
+    name: 'default',
+  });
 
   const server = new ApolloServer({ schema, playground: true });
   server.listen(port).then(({ url }) => {

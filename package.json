@@ -8,16 +8,21 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "webpack",
-    "lint": "eslint src/**/*.ts --fix",
+    "lint": "eslint \"src/**/*.ts\" --fix",
     "start": "node build/bundle.js",
-    "start:dev": "webpack --watch & nodemon build/bundle.js"
+    "start:dev": "webpack --watch & nodemon build/bundle.js",
+    "db:generate": "ts-node ./node_modules/.bin/typeorm migration:generate",
+    "db:migrate": "./node_modules/.bin/typeorm migration:run -c build",
+    "db:revert": "./node_modules/.bin/typeorm migration:revert -c build"
   },
   "dependencies": {
     "apollo-server": "^2.15.0",
     "graphql": "^15.1.0",
+    "pg": "^8.3.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^8.10.2",
-    "type-graphql": "^1.0.0-rc.2"
+    "type-graphql": "^1.0.0-rc.2",
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@types/webpack": "^4.41.17",

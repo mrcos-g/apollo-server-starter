@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "webpack",
-    "lint": "eslint src/**/*.ts --fix",
+    "lint": "eslint \"src/**/*.ts\" --fix",
     "start": "node build/bundle.js",
     "start:dev": "webpack --watch & nodemon build/bundle.js",
     "db:generate": "ts-node ./node_modules/.bin/typeorm migration:generate",

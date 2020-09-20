@@ -10,7 +10,10 @@
     "build": "webpack",
     "lint": "eslint src/**/*.ts --fix",
     "start": "node build/bundle.js",
-    "start:dev": "webpack --watch & nodemon build/bundle.js"
+    "start:dev": "webpack --watch & nodemon build/bundle.js",
+    "db:generate": "ts-node ./node_modules/.bin/typeorm migration:generate",
+    "db:migrate": "./node_modules/.bin/typeorm migration:run -c build",
+    "db:revert": "./node_modules/.bin/typeorm migration:revert -c build"
   },
   "dependencies": {
     "apollo-server": "^2.15.0",

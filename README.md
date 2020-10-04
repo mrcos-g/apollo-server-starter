@@ -15,7 +15,7 @@ Apollo Server Starter uses a number of open source projects to work properly:
 
 ### Installation
 
-Apollo Server Starter uses [Node.js](https://nodejs.org/) v12.18.1 to run.
+Apollo Server Starter uses [node.js] v12.18.1 to run.
 
 We recommend using [NVM](https://github.com/nvm-sh/nvm#installation-and-update) to manage node.js versions
 
@@ -30,6 +30,16 @@ Install the dependencies and devDependencies.
 ```sh
 $ yarn install
 ```
+
+This project uses [dotenv] to load environmental variables from a `.env` file located in the root directory. Please create your own with the following variables for the `ormconfig.js` file.
+
+- `DB_HOST`
+- `DB_PORT`
+- `DB_USERNAME`
+- `DB_PASSWORD`
+- `DB_NAME`
+
+Keep in mind that this project was also built using [Postgres] as the database of choice. You can choose a different option but this may require some changes to the `ormconfig.js` set up. Please look at the [TypeORM configuration options] and adjust based on your selection. You may also need to install a different database client for node.js instead of [node-postgres].
 
 ### Development
 
@@ -60,3 +70,7 @@ yarn build
 [typegraphql]: https://typegraphql.com/
 [typeorm]: https://typeorm.io/#/
 [webpack]: https://webpack.js.org/
+[dotenv]: https://www.npmjs.com/package/dotenv
+[typeorm configuration options]: https://typeorm.io/#/connection-options
+[postgres]: https://www.postgresql.org/
+[node-postgres]: https://github.com/brianc/node-postgres/tree/master/packages/pg

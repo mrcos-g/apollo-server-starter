@@ -41,6 +41,8 @@ This project uses [dotenv] to load environmental variables from a `.env` file lo
 
 Keep in mind that this project was also built using [Postgres] as the database of choice. You can choose a different option but this may require some changes to the `ormconfig.js` set up. Please look at the [TypeORM configuration options] and adjust based on your selection. You may also need to install a different database client for node.js instead of [node-postgres].
 
+This project was also set up using [typeorm migrations] to create database tables and to make modifications. Please refer to typeorm documentation and the `package.json` scripts to run these migrations.
+
 ### Development
 
 Run in development mode
@@ -72,5 +74,6 @@ yarn build
 [webpack]: https://webpack.js.org/
 [dotenv]: https://www.npmjs.com/package/dotenv
 [typeorm configuration options]: https://typeorm.io/#/connection-options
+[typeorm migrations]: https://typeorm.io/#/migrations
 [postgres]: https://www.postgresql.org/
 [node-postgres]: https://github.com/brianc/node-postgres/tree/master/packages/pg

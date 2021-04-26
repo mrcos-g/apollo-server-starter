@@ -1,10 +1,11 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { sync } from 'glob';
 import { basename, resolve } from 'path';
-import webpack from 'webpack';
+// eslint-disable-next-line no-unused-vars
+import { Configuration } from 'webpack';
 import nodeExternals from 'webpack-node-externals';
 
-const config: webpack.Configuration = {
+const config: Configuration = {
   devtool: 'inline-source-map',
   entry: sync(resolve('src/migrations/*.ts')).reduce(
     (entries, filename) => {
@@ -16,7 +17,7 @@ const config: webpack.Configuration = {
     { bundle: './src/index.ts' },
   ),
   externals: [nodeExternals()],
-  mode: (process.env.NODE_ENV as webpack.Configuration['mode']) || 'development',
+  mode: (process.env.NODE_ENV as Configuration['mode']) || 'development',
   module: {
     rules: [
       {
